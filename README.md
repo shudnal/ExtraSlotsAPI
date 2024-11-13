@@ -97,7 +97,7 @@ itemSlotExtraSlots.SettingChanged += (s, e) => ExtraSlotsAPI.API.UpdateSlots(); 
 ```
 And then all I need is to call this in Awake function
 ```c#
-if (ExtraSlotsAPI.API.IsLoaded())
+if (ExtraSlotsAPI.API.IsReady())
     if (itemSlotIndexExtraSlots.Value < 0)
         ExtraSlotsAPI.API.AddSlotBefore("CircletExtended", () => itemSlotNameExtraSlots.Value, item => IsCircletItem(item), () => IsCircletSlotAvailable(), "HipLantern");
     else
