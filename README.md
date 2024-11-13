@@ -4,7 +4,7 @@ I can add more methods to API if you miss something reasonable. Open a [github i
 
 You can either use this API with ExtraSlots set as BepInEx hard dependency or soft dependency.
 
-[API methods with summary](https://github.com/shudnal/ExtraSlots/blob/master/API/API.cs)
+[API methods with summary](https://github.com/shudnal/ExtraSlots/blob/master/API.cs)
 
 ## Hard dependency
 
