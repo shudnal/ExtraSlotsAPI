@@ -20,6 +20,9 @@ namespace ExtraSlotsAPI
             if (_isNotReady)
                 return false;
 
+            if (_typeAPI != null)
+                return true;
+
             _isNotReady = !Chainloader.PluginInfos.ContainsKey("shudnal.ExtraSlots");
             if (_isNotReady)
                 return false;
