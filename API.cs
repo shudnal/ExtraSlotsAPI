@@ -20,7 +20,7 @@ namespace ExtraSlotsAPI
             if (_isNotReady)
                 return false;
 
-            if (_typeAPI != null)
+            if (_typeAPI != null && _typeSlot != null)
                 return true;
 
             _isNotReady = !Chainloader.PluginInfos.ContainsKey("shudnal.ExtraSlots");
@@ -33,7 +33,7 @@ namespace ExtraSlotsAPI
             if (_typeSlot == null)
                 _typeSlot = AccessTools.TypeByName("ExtraSlots.Slots+Slot");
 
-            return _typeAPI != null;
+            return _typeAPI != null && _typeSlot != null;
         }
 
         /// <summary>
@@ -44,7 +44,7 @@ namespace ExtraSlotsAPI
             if (!IsReady())
                 return _emptySlotList;
 
-            return ((IEnumerable<object>)AccessTools.Method(_typeAPI, "GetExtraSlots").Invoke(null, null)).Select(slot => slot.ToExtraSlot()).ToList();
+            return ((IEnumerable<object>)AccessTools.Method(_typeAPI, "GetExtraSlots").Invoke(_typeAPI, null)).Select(slot => slot.ToExtraSlot()).ToList();
         }
 
         /// <summary>
@@ -55,7 +55,7 @@ namespace ExtraSlotsAPI
             if (!IsReady())
                 return _emptySlotList;
 
-            return ((IEnumerable<object>)AccessTools.Method(_typeAPI, "GetEquipmentSlots").Invoke(null, null)).Select(slot => slot.ToExtraSlot()).ToList();
+            return ((IEnumerable<object>)AccessTools.Method(_typeAPI, "GetEquipmentSlots").Invoke(_typeAPI, null)).Select(slot => slot.ToExtraSlot()).ToList();
         }
 
         /// <summary>
@@ -66,7 +66,7 @@ namespace ExtraSlotsAPI
             if (!IsReady())
                 return _emptySlotList;
 
-            return ((IEnumerable<object>)AccessTools.Method(_typeAPI, "GetQuickSlots").Invoke(null, null)).Select(slot => slot.ToExtraSlot()).ToList();
+            return ((IEnumerable<object>)AccessTools.Method(_typeAPI, "GetQuickSlots").Invoke(_typeAPI, null)).Select(slot => slot.ToExtraSlot()).ToList();
         }
 
         /// <summary>
@@ -77,7 +77,7 @@ namespace ExtraSlotsAPI
             if (!IsReady())
                 return _emptySlotList;
 
-            return ((IEnumerable<object>)AccessTools.Method(_typeAPI, "GetFoodSlots").Invoke(null, null)).Select(slot => slot.ToExtraSlot()).ToList();
+            return ((IEnumerable<object>)AccessTools.Method(_typeAPI, "GetFoodSlots").Invoke(_typeAPI, null)).Select(slot => slot.ToExtraSlot()).ToList();
         }
 
         /// <summary>
@@ -88,7 +88,7 @@ namespace ExtraSlotsAPI
             if (!IsReady())
                 return _emptySlotList;
 
-            return ((IEnumerable<object>)AccessTools.Method(_typeAPI, "GetAmmoSlots").Invoke(null, null)).Select(slot => slot.ToExtraSlot()).ToList();
+            return ((IEnumerable<object>)AccessTools.Method(_typeAPI, "GetAmmoSlots").Invoke(_typeAPI, null)).Select(slot => slot.ToExtraSlot()).ToList();
         }
 
         /// <summary>
@@ -99,7 +99,7 @@ namespace ExtraSlotsAPI
             if (!IsReady())
                 return _emptySlotList;
 
-            return ((IEnumerable<object>)AccessTools.Method(_typeAPI, "GetMiscSlots").Invoke(null, null)).Select(slot => slot.ToExtraSlot()).ToList();
+            return ((IEnumerable<object>)AccessTools.Method(_typeAPI, "GetMiscSlots").Invoke(_typeAPI, null)).Select(slot => slot.ToExtraSlot()).ToList();
         }
 
         /// <summary>
@@ -111,7 +111,7 @@ namespace ExtraSlotsAPI
             if (!IsReady())
                 return null;
 
-            return AccessTools.Method(_typeAPI, "FindSlot").Invoke(null, new object[] { slotID }).ToExtraSlot();
+            return AccessTools.Method(_typeAPI, "FindSlot").Invoke(_typeAPI, new object[] { slotID }).ToExtraSlot();
         }
 
         /// <summary>
@@ -123,7 +123,7 @@ namespace ExtraSlotsAPI
             if (!IsReady())
                 return _emptyItemList;
 
-            return (List<ItemDrop.ItemData>)AccessTools.Method(_typeAPI, "GetAllExtraSlotsItems").Invoke(null, null);
+            return (List<ItemDrop.ItemData>)AccessTools.Method(_typeAPI, "GetAllExtraSlotsItems").Invoke(_typeAPI, null);
         }
 
         /// <summary>
@@ -135,7 +135,7 @@ namespace ExtraSlotsAPI
             if (!IsReady())
                 return _emptyItemList;
 
-            return (List<ItemDrop.ItemData>)AccessTools.Method(_typeAPI, "GetEquipmentSlotsItems").Invoke(null, null);
+            return (List<ItemDrop.ItemData>)AccessTools.Method(_typeAPI, "GetEquipmentSlotsItems").Invoke(_typeAPI, null);
         }
 
         /// <summary>
@@ -147,7 +147,7 @@ namespace ExtraSlotsAPI
             if (!IsReady())
                 return _emptyItemList;
 
-            return (List<ItemDrop.ItemData>)AccessTools.Method(_typeAPI, "GetQuickSlotsItems").Invoke(null, null);
+            return (List<ItemDrop.ItemData>)AccessTools.Method(_typeAPI, "GetQuickSlotsItems").Invoke(_typeAPI, null);
         }
 
         /// <summary>
@@ -159,7 +159,7 @@ namespace ExtraSlotsAPI
             if (!IsReady())
                 return _emptyItemList;
 
-            return (List<ItemDrop.ItemData>)AccessTools.Method(_typeAPI, "GetFoodSlotsItems").Invoke(null, null);
+            return (List<ItemDrop.ItemData>)AccessTools.Method(_typeAPI, "GetFoodSlotsItems").Invoke(_typeAPI, null);
         }
 
         /// <summary>
@@ -171,7 +171,7 @@ namespace ExtraSlotsAPI
             if (!IsReady())
                 return _emptyItemList;
 
-            return (List<ItemDrop.ItemData>)AccessTools.Method(_typeAPI, "GetAmmoSlotsItems").Invoke(null, null);
+            return (List<ItemDrop.ItemData>)AccessTools.Method(_typeAPI, "GetAmmoSlotsItems").Invoke(_typeAPI, null);
         }
 
         /// <summary>
@@ -183,7 +183,7 @@ namespace ExtraSlotsAPI
             if (!IsReady())
                 return _emptyItemList;
 
-            return (List<ItemDrop.ItemData>)AccessTools.Method(_typeAPI, "GetMiscSlotsItems").Invoke(null, null);
+            return (List<ItemDrop.ItemData>)AccessTools.Method(_typeAPI, "GetMiscSlotsItems").Invoke(_typeAPI, null);
         }
 
         /// <summary>
@@ -194,7 +194,7 @@ namespace ExtraSlotsAPI
             if (!IsReady())
                 return -1;
 
-            return (int)AccessTools.Method(_typeAPI, "GetExtraRows").Invoke(null, null);
+            return (int)AccessTools.Method(_typeAPI, "GetExtraRows").Invoke(_typeAPI, null);
         }
 
         /// <summary>
@@ -205,7 +205,7 @@ namespace ExtraSlotsAPI
             if (!IsReady())
                 return -1;
 
-            return (int)AccessTools.Method(_typeAPI, "GetInventoryHeightFull").Invoke(null, null);
+            return (int)AccessTools.Method(_typeAPI, "GetInventoryHeightFull").Invoke(_typeAPI, null);
         }
 
         /// <summary>
@@ -216,7 +216,7 @@ namespace ExtraSlotsAPI
             if (!IsReady())
                 return -1;
 
-            return (int)AccessTools.Method(_typeAPI, "GetInventoryHeightPlayer").Invoke(null, null);
+            return (int)AccessTools.Method(_typeAPI, "GetInventoryHeightPlayer").Invoke(_typeAPI, null);
         }
 
         /// <summary>
@@ -228,7 +228,7 @@ namespace ExtraSlotsAPI
             if (!IsReady())
                 return false;
 
-            return (bool)AccessTools.Method(_typeAPI, "IsGridPositionASlot").Invoke(null, new object[] { gridPos });
+            return (bool)AccessTools.Method(_typeAPI, "IsGridPositionASlot").Invoke(_typeAPI, new object[] { gridPos });
         }
 
         /// <summary>
@@ -240,7 +240,7 @@ namespace ExtraSlotsAPI
             if (!IsReady())
                 return false;
 
-            return (bool)AccessTools.Method(_typeAPI, "IsItemInSlot").Invoke(null, new object[] { item });
+            return (bool)AccessTools.Method(_typeAPI, "IsItemInSlot").Invoke(_typeAPI, new object[] { item });
         }
 
         /// <summary>
@@ -252,7 +252,7 @@ namespace ExtraSlotsAPI
             if (!IsReady())
                 return false;
 
-            return (bool)AccessTools.Method(_typeAPI, "IsItemInEquipmentSlot").Invoke(null, new object[] { item });
+            return (bool)AccessTools.Method(_typeAPI, "IsItemInEquipmentSlot").Invoke(_typeAPI, new object[] { item });
         }
 
         /// <summary>
@@ -268,7 +268,7 @@ namespace ExtraSlotsAPI
             if (!IsReady())
                 return false;
 
-            return (bool)AccessTools.Method(_typeAPI, "AddSlot").Invoke(null, new object[] { slotID, -1, getName, itemIsValid, isActive });
+            return (bool)AccessTools.Method(_typeAPI, "AddSlot").Invoke(_typeAPI, new object[] { slotID, -1, getName, itemIsValid, isActive });
         }
 
         /// <summary>
@@ -285,7 +285,7 @@ namespace ExtraSlotsAPI
             if (!IsReady())
                 return false;
 
-            return (bool)AccessTools.Method(_typeAPI, "AddSlotWithIndex").Invoke(null, new object[] { slotID, slotIndex, getName, itemIsValid, isActive });
+            return (bool)AccessTools.Method(_typeAPI, "AddSlotWithIndex").Invoke(_typeAPI, new object[] { slotID, slotIndex, getName, itemIsValid, isActive });
         }
 
         /// <summary>
@@ -302,7 +302,7 @@ namespace ExtraSlotsAPI
             if (!IsReady())
                 return false;
 
-            return (bool)AccessTools.Method(_typeAPI, "AddSlotBefore").Invoke(null, new object[] { slotIDs, slotID, getName, itemIsValid, isActive });
+            return (bool)AccessTools.Method(_typeAPI, "AddSlotBefore").Invoke(_typeAPI, new object[] { slotID, getName, itemIsValid, isActive, slotIDs });
         }
 
         /// <summary>
@@ -319,7 +319,7 @@ namespace ExtraSlotsAPI
             if (!IsReady())
                 return false;
 
-            return (bool)AccessTools.Method(_typeAPI, "AddSlotAfter").Invoke(null, new object[] { slotIDs, slotID, getName, itemIsValid, isActive });
+            return (bool)AccessTools.Method(_typeAPI, "AddSlotAfter").Invoke(_typeAPI, new object[] { slotID, getName, itemIsValid, isActive, slotIDs });
         }
 
         /// <summary>
@@ -331,7 +331,7 @@ namespace ExtraSlotsAPI
             if (!IsReady())
                 return false;
 
-            return (bool)AccessTools.Method(_typeAPI, "RemoveSlot").Invoke(null, new object[] { slotID });
+            return (bool)AccessTools.Method(_typeAPI, "RemoveSlot").Invoke(_typeAPI, new object[] { slotID });
         }
 
         /// <summary>
@@ -343,7 +343,7 @@ namespace ExtraSlotsAPI
             if (!IsReady())
                 return;
 
-            AccessTools.Method(_typeAPI, "UpdateSlots").Invoke(null, null);
+            AccessTools.Method(_typeAPI, "UpdateSlots").Invoke(_typeAPI, null);
         }
     }
 }

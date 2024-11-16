@@ -40,8 +40,8 @@
     <Reference Include="0Harmony">
       <HintPath>F:\Steam\steamapps\common\Valheim\BepInEx\core\0Harmony.dll</HintPath>
     </Reference>
-    <Reference Include="assembly_utils">
-      <HintPath>..\Assemblies\stable\publicized_assemblies\assembly_utils.dll</HintPath>
+    <Reference Include="assembly_utils_publicized">
+      <HintPath>..\Assemblies\stable\publicized_assemblies\assembly_utils_publicized.dll</HintPath>
     </Reference>
     <Reference Include="assembly_valheim_publicized">
       <HintPath>..\Assemblies\stable\publicized_assemblies\assembly_valheim_publicized.dll</HintPath>
