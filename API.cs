@@ -3,6 +3,7 @@ using HarmonyLib;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 
 namespace ExtraSlotsAPI
 {
@@ -27,11 +28,18 @@ namespace ExtraSlotsAPI
             if (_isNotReady)
                 return false;
 
-            if (_typeAPI == null)
-                _typeAPI = AccessTools.TypeByName("ExtraSlots.API");
+            if (_typeAPI == null || _typeSlot == null)
+            {
+                Assembly extraSlots = AccessTools.AllAssemblies().FirstOrDefault(a => a.FullName.StartsWith("ExtraSlots"));
+                if (extraSlots == null)
+                {
+                    _isNotReady = true;
+                    return false;
+                }
 
-            if (_typeSlot == null)
-                _typeSlot = AccessTools.TypeByName("ExtraSlots.Slots+Slot");
+                _typeAPI = extraSlots.GetType("ExtraSlots.API");
+                _typeSlot = extraSlots.GetType("ExtraSlots.Slots+Slot");
+            }
 
             return _typeAPI != null && _typeSlot != null;
         }
