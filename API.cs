@@ -30,7 +30,7 @@ namespace ExtraSlotsAPI
 
             if (_typeAPI == null || _typeSlot == null)
             {
-                Assembly extraSlots = AccessTools.AllAssemblies().FirstOrDefault(a => a.FullName.StartsWith("ExtraSlots"));
+                Assembly extraSlots = Assembly.GetAssembly(Chainloader.PluginInfos["shudnal.ExtraSlots"].Instance.GetType());
                 if (extraSlots == null)
                 {
                     _isNotReady = true;
@@ -261,6 +261,45 @@ namespace ExtraSlotsAPI
                 return false;
 
             return (bool)AccessTools.Method(_typeAPI, "IsItemInEquipmentSlot").Invoke(_typeAPI, new object[] { item });
+        }
+
+        /// <summary>
+        /// Returns if any global key or player unique key from comma-separated string is enabled.
+        /// Respects if slots progression is enabled
+        /// </summary>
+        /// <param name="requiredKeys">Comma-separated list of global keys and player unique keys</param>
+        public static bool IsAnyGlobalKeyActive(string requiredKeys)
+        {
+            if (!IsReady())
+                return false;
+
+            return (bool)AccessTools.Method(_typeAPI, "requiredKeys").Invoke(_typeAPI, new object[] { requiredKeys });
+        }
+
+        /// <summary>
+        /// Returns if any global key or player unique key from comma-separated string is enabled.
+        /// Respects if slots progression is enabled
+        /// </summary>
+        /// <param name="itemType"></param>
+        public static bool IsItemTypeKnown(ItemDrop.ItemData.ItemType itemType)
+        {
+            if (!IsReady())
+                return false;
+
+            return (bool)AccessTools.Method(_typeAPI, "IsItemTypeKnown").Invoke(_typeAPI, new object[] { itemType });
+        }
+
+        /// <summary>
+        /// Returns if any global key or player unique key from comma-separated string is enabled.
+        /// Respects if slots progression is enabled
+        /// </summary>
+        /// <param name="itemNames">Comma-separated list of item names (m_shared.m_name)</param>
+        public static bool IsAnyMaterialDiscovered(string itemNames)
+        {
+            if (!IsReady())
+                return false;
+
+            return (bool)AccessTools.Method(_typeAPI, "IsAnyMaterialDiscovered").Invoke(_typeAPI, new object[] { itemNames });
         }
 
         /// <summary>
